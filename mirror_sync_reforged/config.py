@@ -11,3 +11,4 @@ class Configure(Serializable):
     count_down: int = 10
     backup: bool = False
     ignore_session_lock: bool = True
+    ignore_carpet_conf: bool = True

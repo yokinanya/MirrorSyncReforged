@@ -59,6 +59,10 @@ A backup of the mirror server will be created by [QuickBackupM](https://github.c
 
 If enabled, `session.lock` file will be ignored when copying the world
 
+### `ignore_carpet_conf`
+
+If enabled, the config file of carpet will be ignored when copying the world
+
 ### Example
 
 File structure:

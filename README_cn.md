@@ -59,6 +59,10 @@ MirrorSyncReforged
 
 如果启用，拷贝世界时将忽略 `session.lock` 文件
 
+### `ignore_carpet_conf`
+
+如果启用，拷贝世界时将忽略carpet的配置文件
+
 ### 例子
 
 文件结构：
