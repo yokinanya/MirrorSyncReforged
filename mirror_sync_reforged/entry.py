@@ -251,7 +251,7 @@ def _sync(source: CommandSource):
     server_inst.logger.info("Copying survival worlds to the mirror server")
     carpet_config_backup(config.survival_server_path)
     copy_worlds(config.survival_server_path, config.mirror_server_path)
-    carpet_config_backup(config.survival_server_path)
+    carpet_config(config.survival_server_path)
     server_inst.logger.info("Sync done, starting the server")
     server.start()
 
