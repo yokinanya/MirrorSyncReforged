@@ -1,4 +1,4 @@
-    from mcdreforged.plugin.plugin_event import LiteralEvent
+from mcdreforged.plugin.plugin_event import LiteralEvent
 
 QBM_PID = 'quick_backup_multi'
 
