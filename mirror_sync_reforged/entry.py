@@ -46,15 +46,15 @@ def carpet_config_backup(src: str):
         "pca.conf",
     ]
     if config.ignore_carpet_conf:
+        server_inst.logger.info("backup carpet config: {} -> {}".format(src, carpet_conf_path))
         for item in carpet_conf:
             src_path = os.path.join(src, item)
             dst_path = os.path.join(carpet_conf_path, item)
-            server_inst.logger.info("copying {} -> {}".format(src_path, dst_path))
-            if os.path.isdir(carpet_conf_path):
+            if os.path.isdir(carpet_conf_path) and os.path.isfile(src_path):
                 shutil.copyfile(src_path, dst_path)
 
 
-def carpet_config(src: str):
+def carpet_config_restore(src: str):
     for world in config.world_names:
         src = os.path.join(src, world)
     carpet_conf_path = config.carpet_conf_path
@@ -65,11 +65,12 @@ def carpet_config(src: str):
         "pca.conf",
     ]
     if config.ignore_carpet_conf:
+        server_inst.logger.info("restoring carpet config: {} -> {}".format(carpet_conf_path, src))
         for item in carpet_conf:
             src_path = os.path.join(src, item)
             dst_path = os.path.join(carpet_conf_path, item)
-            server_inst.logger.info("copying {} -> {}".format(dst_path, src_path))
-            shutil.copy(src = dst_path, dst = src_path)
+            if os.path.isdir(carpet_conf_path) and os.path.isfile(dst_path):
+                shutil.copy(src = dst_path, dst = src_path)
 
 
 # From Quick Backup Multi
@@ -252,7 +253,7 @@ def _sync(source: CommandSource):
     server_inst.logger.info("Copying survival worlds to the mirror server")
     carpet_config_backup(config.mirror_server_path)
     copy_worlds(config.survival_server_path, config.mirror_server_path)
-    carpet_config(config.mirror_server_path)
+    carpet_config_restore(config.mirror_server_path)
     server_inst.logger.info("Sync done, starting the server")
     server.start()
 
