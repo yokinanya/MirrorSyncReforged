@@ -67,8 +67,7 @@ def carpet_config(src: str):
         for item in carpet_conf:
             src_path = os.path.join(src, item)
             dst_path = os.path.join(carpet_conf_path, item)
-            if os.path.isdir(carpet_conf_path):
-                shutil.copyfile(dst_path, src_path)
+            shutil.copyfile(src = dst_path, dst = src_path)
 
 
 # From Quick Backup Multi
