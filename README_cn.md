@@ -63,6 +63,9 @@ MirrorSyncReforged
 
 如果启用，拷贝世界时将忽略carpet的配置文件
 
+### `carpet_conf_path`
+如果 `ignore_carpet_conf` 启用, 拷贝世界时会先将carpet的配置文件复制到此文件夹
+
 ### 例子
 
 文件结构：
@@ -78,6 +81,7 @@ root/
     mirror_mcdr/
         config/
             mirror_sync_reforged/
+                carpet/
                 config.json
         plugins/
             mirror_sync_reforged.mcdr

@@ -63,6 +63,9 @@ If enabled, `session.lock` file will be ignored when copying the world
 
 If enabled, the config file of carpet will be ignored when copying the world
 
+### `carpet_conf_path`
+If `ignore_carpet_conf` is `Ture`, the carpet config will be backup to this directory before sync the world
+
 ### Example
 
 File structure:
@@ -78,6 +81,7 @@ root/
     mirror_mcdr/
         config/
             mirror_sync_reforged/
+                carpet/
                 config.json
         plugins/
             mirror_sync_reforged.mcdr

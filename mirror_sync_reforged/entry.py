@@ -247,11 +247,11 @@ def _sync(source: CommandSource):
                 "Backup is enabled but {} is not loaded".format(constants.QBM_PID)
             )
 
+    carpet_config_backup(config.mirror_server_path)
     server_inst.logger.info("Deleting world")
     remove_worlds(config.mirror_server_path)
 
     server_inst.logger.info("Copying survival worlds to the mirror server")
-    carpet_config_backup(config.mirror_server_path)
     copy_worlds(config.survival_server_path, config.mirror_server_path)
     carpet_config_restore(config.mirror_server_path)
     server_inst.logger.info("Sync done, starting the server")
