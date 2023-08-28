@@ -12,3 +12,4 @@ class Configure(Serializable):
     backup: bool = False
     ignore_session_lock: bool = True
     ignore_carpet_conf: bool = True
+    carpet_conf_path = str = './config/mirror_sync_reforged/carpet'

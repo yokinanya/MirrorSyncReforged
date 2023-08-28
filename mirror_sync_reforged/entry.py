@@ -35,6 +35,42 @@ def show_help_message(source: CommandSource):
     )
 
 
+def carpet_config_backup(src: str):
+    for world in config.world_names:
+        src = os.path.join(src, world)
+    carpet_conf_path = config.carpet_conf_path
+    carpet_conf = [
+        "carpet-tctc-addition.conf",
+        "carpet.conf",
+        "magiclib.conf",
+        "pca.conf",
+    ]
+    if config.ignore_carpet_conf:
+        for item in carpet_conf:
+            src_path = os.path.join(src, item)
+            dst_path = os.path.join(carpet_conf_path, item)
+            if os.path.isdir(carpet_conf_path):
+                shutil.copyfile(src_path, dst_path)
+
+
+def carpet_config(src: str):
+    for world in config.world_names:
+        src = os.path.join(src, world)
+    carpet_conf_path = config.carpet_conf_path
+    carpet_conf = [
+        "carpet-tctc-addition.conf",
+        "carpet.conf",
+        "magiclib.conf",
+        "pca.conf",
+    ]
+    if config.ignore_carpet_conf:
+        for item in carpet_conf:
+            src_path = os.path.join(src, item)
+            dst_path = os.path.join(carpet_conf_path, item)
+            if os.path.isdir(carpet_conf_path):
+                shutil.copyfile(dst_path, src_path)
+
+
 # From Quick Backup Multi
 def copy_worlds(src: str, dst: str):
     for world in config.world_names:
@@ -213,7 +249,9 @@ def _sync(source: CommandSource):
     remove_worlds(config.mirror_server_path)
 
     server_inst.logger.info("Copying survival worlds to the mirror server")
+    carpet_config_backup(config.survival_server_path)
     copy_worlds(config.survival_server_path, config.mirror_server_path)
+    carpet_config_backup(config.survival_server_path)
     server_inst.logger.info("Sync done, starting the server")
     server.start()
 
